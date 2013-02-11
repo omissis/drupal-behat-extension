@@ -18,6 +18,11 @@ interface DriverInterface {
   public function isBootstrapped();
 
   /**
+   * Get info about a user
+   */
+  public function userInformation($username);
+
+  /**
    * Create a user.
    */
   public function userCreate(\stdClass $user);

@@ -86,6 +86,28 @@ class DrushDriver implements DriverInterface {
   }
 
   /**
+   * Implements DriverInterface::userInformation().
+   */
+  public function userInformation($username) {
+    $arguments = array(
+      "\"$username\"",
+    );
+    $options = array();
+
+    $result = $this->drush('user-information', $arguments, $options);
+
+    $rows = explode("\r\n", trim($result));
+    $fields = array();
+
+    foreach ($rows as $rid => $row) {
+      $field = explode(':', $row);
+      $fields[strtolower(trim(str_replace('User ', '', $field[0])))] = trim($field[1]);
+    }
+
+    return $fields;
+  }
+
+  /**
    * Implements DriverInterface::userDelete().
    */
   public function userDelete(\stdClass $user) {

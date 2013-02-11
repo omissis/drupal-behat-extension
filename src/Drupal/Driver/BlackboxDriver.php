@@ -34,6 +34,13 @@ class BlackboxDriver implements DriverInterface {
   /**
    * Implements DriverInterface::userDelete().
    */
+  public function userInformation($username) {
+    throw new UnsupportedDriverActionException('No ability to get user information in %s', $this);
+  }
+
+  /**
+   * Implements DriverInterface::userDelete().
+   */
   public function userDelete(\stdClass $user) {
     throw new UnsupportedDriverActionException('No ability to delete users in %s', $this);
   }
